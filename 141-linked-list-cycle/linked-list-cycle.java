@@ -12,31 +12,27 @@
 public class Solution {
     public boolean hasCycle(ListNode head) {
 
-        ListNode temp=head;
-
-        List<ListNode> node=new ArrayList<>();
-
-        int flag=1;
-
-        while(flag!=0){
-
-            if(temp!=null){
-
-                if(!node.contains(temp)){
-                node.add(temp);
-                temp=temp.next;
-            }else{
-                flag=0;
-            }
-
-            }else{
-                return false;
-            }
-
-            
+        if(head==null || head.next==null){
+            return false;
         }
 
-        return true;
+        ListNode slow=head;
+        ListNode fast=head;
+
+        slow=slow.next;
+        fast=fast.next.next;
+
+        while(fast!=null && fast.next!=null){
+             if(slow==fast){
+                return true;
+             }
+
+            slow=slow.next;
+        fast=fast.next.next;
+        }
+          
+          return false;
+        
         
     }
 }
