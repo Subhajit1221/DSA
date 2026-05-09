@@ -1,34 +1,90 @@
 class Solution {
     public String simplifyPath(String path) {
 
-        Stack<String> s = new Stack<>();
+        Stack <Character> s= new Stack<>();
+        StringBuilder p = new StringBuilder(path);
+        p.append('/');
 
-        String[] arr = path.split("/");
+        p.toString();
 
-        for(String str : arr){
+        int n=p.length();
+        int count=0;
 
-            if(str.equals("") || str.equals(".")){
-                continue;
+        s.push('/');
+
+        for(int i=1;i<n;i++){
+            
+            if(p.charAt(i)=='/'){
+
+                if(s.peek()=='/')  {       
+                if(count>2){
+                        while(count>0){
+                            s.push('.');
+                            count--;
+                        }
+                    }else if(count==2){
+                      
+                     s.pop();
+                     if(s.isEmpty()){
+                        s.push('/');
+                     }
+                     while(!s.isEmpty() && s.peek()!='/'){
+                        s.pop();
+                     }
+                     
+
+                    }
+                        
+            }else{
+
+                 while(count>0){
+                            s.push('.');
+                            count--;
+                 }
+
             }
 
-            else if(str.equals("..")){
+            count=0;
 
-                if(!s.isEmpty()){
-                    s.pop();
+              if(s.peek()!='/'){
+                    s.push(p.charAt(i));
                 }
 
+                
+            }else if(p.charAt(i)=='.'){
+                    
+                    
+                    count++;
             }else{
-                s.push(str);
+                while(count>0){
+                            s.push('.');
+                            count--;
+                 }
+                  s.push(p.charAt(i));
+
             }
         }
 
-        StringBuilder sb = new StringBuilder();
+         if(s.peek()=='/')  {
+            s.pop();
+         }
+        if(s.isEmpty()){
+                        s.push('/');
+                     }
 
-        for(String str : s){
-            sb.append("/");
-            sb.append(str);
+                  
+
+
+
+        System.out.print(s);
+
+        StringBuilder sb=new StringBuilder();
+
+        while(!s.isEmpty()){
+            sb.insert(0, s.pop());
         }
 
-        return sb.length() == 0 ? "/" : sb.toString();
+        return sb.toString();
+        
     }
 }
