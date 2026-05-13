@@ -4,14 +4,9 @@ class Solution {
         int size = pairs.length;
          
 
-    Arrays.sort(pairs, (a, b) -> {
+   Arrays.sort(pairs, (a, b) -> Integer.compare(a[1], b[1]));
 
-    if(a[1] == b[1]){
-        return Integer.compare(a[0], b[0]);
-    }
-
-    return Integer.compare(a[1], b[1]);
-    });
+   
 
     System.out.println(Arrays.deepToString(pairs));
 
