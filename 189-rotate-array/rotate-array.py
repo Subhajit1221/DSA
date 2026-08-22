@@ -2,17 +2,16 @@ class Solution(object):
 
     def rotate_me(self, nums, left, right):
 
-        right -= 1
+        k=left+right
 
-        while left < right:
-            temp = nums[left]
-            nums[left] = nums[right]
-            nums[right] = temp
+        for i in range(left,k//2 +1):
+            temp=nums[i]
+            nums[i]=nums[right]
+            nums[right]=temp
+            right-=1
 
-            left += 1
-            right -= 1
 
-        return nums
+        
 
     def rotate(self, nums, k):
 
@@ -23,8 +22,10 @@ class Solution(object):
 
         k = k % n
 
-        nums = self.rotate_me(nums, 0, n - k)
-        nums = self.rotate_me(nums, n - k, n)
-        nums = self.rotate_me(nums, 0, n)
+        
+        if(n>k):
+            self.rotate_me(nums, 0, n - k-1)
+            self.rotate_me(nums, n - k, n-1)
+            self.rotate_me(nums, 0, n-1)
 
         return nums
