@@ -1,29 +1,25 @@
 class Solution(object):
     def setZeroes(self, matrix):
 
-       
-       
+        r = len(matrix)
+        c = len(matrix[0])
 
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if(matrix[i][j]==0):
-                    # matrix[i][j] = float('inf')
-                    for x in  range(len(matrix)):
-                        if(matrix[x][j]!=0):
-                            matrix[x][j]= float('inf')
-                    for y in  range(len(matrix[0])):
-                        if(matrix[i][y]!=0):
-                            matrix[i][y]= float('inf')
-                
+        rowtrack = [0 for i in range(r)]
+        coltrack = [0 for i in range(c)]
 
-                
+        # Find the zeroes
+        for i in range(0, r):
+            for j in range(0, c):
 
+                if matrix[i][j] == 0:
+                    rowtrack[i] = -1
+                    coltrack[j] = -1
 
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if(matrix[i][j]==float('inf')):
+        # Make the required rows and columns zero
+        for i in range(0, r):
+            for j in range(0, c):
+
+                if rowtrack[i] == -1 or coltrack[j] == -1:
                     matrix[i][j] = 0
-        
-
 
         return matrix
