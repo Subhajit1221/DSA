@@ -1,25 +1,53 @@
 class Solution(object):
     def setZeroes(self, matrix):
 
-        r = len(matrix)
-        c = len(matrix[0])
+        rows = len(matrix)
+        columns = len(matrix[0])
 
-        rowtrack = [0 for i in range(r)]
-        coltrack = [0 for i in range(c)]
+        # Check whether first row has a zero
+        first_row_zero = False
 
-        # Find the zeroes
-        for i in range(0, r):
-            for j in range(0, c):
+        for j in range(columns):
+            if matrix[0][j] == 0:
+                first_row_zero = True
+
+        # Check whether first column has a zero
+        first_column_zero = False
+
+        for i in range(rows):
+            if matrix[i][0] == 0:
+                first_column_zero = True
+
+        # Use first row and first column as markers
+        for i in range(1, rows):
+            for j in range(1, columns):
 
                 if matrix[i][j] == 0:
-                    rowtrack[i] = -1
-                    coltrack[j] = -1
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
 
-        # Make the required rows and columns zero
-        for i in range(0, r):
-            for j in range(0, c):
+        # Make rows zero
+        for i in range(1, rows):
+            if matrix[i][0] == 0:
 
-                if rowtrack[i] == -1 or coltrack[j] == -1:
+                for j in range(1, columns):
                     matrix[i][j] = 0
+
+        # Make columns zero
+        for j in range(1, columns):
+            if matrix[0][j] == 0:
+
+                for i in range(1, rows):
+                    matrix[i][j] = 0
+
+        # Finally, handle first row
+        if first_row_zero:
+            for j in range(columns):
+                matrix[0][j] = 0
+
+        # Finally, handle first column
+        if first_column_zero:
+            for i in range(rows):
+                matrix[i][0] = 0
 
         return matrix
