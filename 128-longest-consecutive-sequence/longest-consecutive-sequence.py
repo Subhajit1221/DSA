@@ -1,30 +1,34 @@
 class Solution(object):
     def longestConsecutive(self, nums):
 
-        size=len(nums)
+        
+
+        nums_set = set(nums)
+
+        size=len(nums_set)
 
         if(size==0):
             return 0
         
-        nums.sort()
+      
 
         
 
         count=1
         max=0
 
-        for i in range ( size-1):
+        for i in nums_set:
 
-            if nums[i+1]-nums[i]==1:
-                count+=1
-            elif nums[i+1]-nums[i]==0:
-                 continue
-            else:
-                if(max<count):
-                    max=count
+            if i-1 not in nums_set:
                 count=1
 
-        if(max<count):
-            max=count
+                while i+ count in nums_set:
+                    count+=1
+            
+                if(max<count):
+                    max=count
+                
+
+       
 
         return max
