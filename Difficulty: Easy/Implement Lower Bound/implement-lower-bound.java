@@ -16,7 +16,7 @@ class Solution {
 
         if(arr[mid]>=x){
             lower=Math.min(lower,mid);
-            return find(arr,x,i,lower-1);
+            return find(arr,x,i,mid-1);
         }
 
         
