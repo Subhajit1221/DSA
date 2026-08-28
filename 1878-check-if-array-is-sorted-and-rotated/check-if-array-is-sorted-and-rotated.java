@@ -6,30 +6,25 @@ class Solution {
         int flag=0;
 
         int i=0;
+        int n=0;
 
-        while(i<size-1 && flag<1){
-            if(nums[i]>nums[i+1]){
+        while(n<size){
+            if(nums[i]>nums[(1+i)%size]){
                 flag++;
             }
 
-            i++;
+           i=(i+1)%size;
+
+           if(flag>1){
+            return false;
+           }
+
+           n++;
         }
 
-        System.out.print(i);
-
-        if(flag==0){
-            return true;
-        }
         
-        int n=1;
-        int x=i;
-        while(n<size){
-           if(nums[x]>nums[(1+x)%size]){
-                return false;
-            }
-            x=(x+1)%size;
-            n++;
-        }
+
+        
 
         return true;
     }
