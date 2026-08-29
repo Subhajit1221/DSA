@@ -1,32 +1,26 @@
 class Solution {
     public int majorityElement(int[] nums) {
 
-        Arrays.sort(nums);
+        int candidate=nums[0];
+        int count=1;
 
-        int size=nums.length;
+        for(int i:nums){
 
-        int count =1;
-        int val=nums[0];
-
-        for(int i =1;i<size;i++){
-            if(nums[i]==nums[i-1]){
+            
+             if(i==candidate){
                 count++;
-                 
-            }else{
-                    if(count>size/2){
-                    val=nums[i-1];
-                    return val;
-                }
+             }else{
+                count--;
+             }
+
+              if(count==0){
+                candidate=i;
                 count=1;
-                }
+             }
+
+            
         }
 
-
-        if(count>size/2){
-            val=nums[size-1];
-            }
-
-        return val;
-        
+        return candidate;
     }
 }
