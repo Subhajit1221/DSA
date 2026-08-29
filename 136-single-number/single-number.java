@@ -1,20 +1,12 @@
 class Solution {
     public int singleNumber(int[] nums) {
 
-        int size=nums.length;
+        int result = 0;
 
-        if(size==1){
-            return nums[0];
-        }
-        Arrays.sort(nums);
+for(int num : nums){
+    result ^= num;
+}
 
-        int i=0;
-
-        for(i=0;i<size-1;i+=2){
-            if(nums[i]!=nums[i+1]){
-               break;
-            }
-        }
-        return nums[i];
+return result;
     }
 }
