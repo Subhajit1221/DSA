@@ -4,18 +4,11 @@ class Solution {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         int low = 0;
-        int high = 0;
         int max = 0;
 
-        while (high < fruits.length) {
+        for (int high = 0; high < fruits.length; high++) {
 
-            if (map.containsKey(fruits[high])) {
-                map.put(fruits[high], map.get(fruits[high]) + 1);
-            } else {
-                map.put(fruits[high], 1);
-            }
-
-            
+            map.put(fruits[high], map.getOrDefault(fruits[high], 0) + 1);
 
             while (map.size() > 2) {
 
@@ -28,11 +21,7 @@ class Solution {
                 low++;
             }
 
-            
-                max = Math.max(max, high - low+1);
-            
-
-            high++;
+            max = Math.max(max, high - low + 1);
         }
 
         return max;
