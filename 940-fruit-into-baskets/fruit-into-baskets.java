@@ -1,20 +1,15 @@
 class Solution {
     public int totalFruit(int[] fruits) {
 
-
-        if(fruits.length<=2){
-            return fruits.length;
-        }
-
         HashMap<Integer, Integer> map = new HashMap<>();
 
         int low = 0;
         int high = 0;
-
-        int max = Integer.MIN_VALUE;
+        int max = 0;
 
         while (high < fruits.length) {
 
+            // Add the current fruit
             if (map.containsKey(fruits[high])) {
                 map.put(fruits[high], map.get(fruits[high]) + 1);
             } else {
@@ -23,21 +18,19 @@ class Solution {
 
             high++;
 
-            
-
+            // Too many fruit types
             while (map.size() > 2) {
 
-                
-                    map.put(fruits[low], map.get(fruits[low]) - 1);
-                   
-                
-                if(map.get(fruits[low])==0){
+                map.put(fruits[low], map.get(fruits[low]) - 1);
+
+                if (map.get(fruits[low]) == 0) {
                     map.remove(fruits[low]);
                 }
 
                 low++;
-                
             }
+
+            // Window now has at most 2 types
             max = Math.max(max, high - low);
         }
 
