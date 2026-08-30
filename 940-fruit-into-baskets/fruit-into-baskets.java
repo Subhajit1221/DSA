@@ -15,7 +15,7 @@ class Solution {
                 map.put(fruits[high], 1);
             }
 
-            high++;
+            
 
             while (map.size() > 2) {
 
@@ -28,9 +28,11 @@ class Solution {
                 low++;
             }
 
-            if (map.size() <= 2) {
-                max = Math.max(max, high - low);
-            }
+            
+                max = Math.max(max, high - low+1);
+            
+
+            high++;
         }
 
         return max;
