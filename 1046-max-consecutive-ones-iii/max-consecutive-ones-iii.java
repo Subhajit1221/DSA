@@ -1,29 +1,28 @@
 class Solution {
     public int longestOnes(int[] nums, int k) {
 
-        int low=0;
-        int high=0;
-        int max=Integer.MIN_VALUE;
-        int binary[]= new int[2];
-        int maxFrequency=0;
+        int low = 0;
+        int zeros = 0;
+        int max = 0;
 
-        while(high<nums.length){
-            binary[nums[high]]++;
+        for (int high = 0; high < nums.length; high++) {
 
-            maxFrequency=binary[1];
+            if (nums[high] == 0) {
+                zeros++;
+            }
 
-            while(high-low+1-maxFrequency>k){
-                binary[nums[low]]--;
+            while (zeros > k) {
+
+                if (nums[low] == 0) {
+                    zeros--;
+                }
+
                 low++;
-            } 
+            }
 
-
-            max=Math.max(max,high-low+1);
-
-            high++;
+            max = Math.max(max, high - low + 1);
         }
 
         return max;
-        
     }
 }
