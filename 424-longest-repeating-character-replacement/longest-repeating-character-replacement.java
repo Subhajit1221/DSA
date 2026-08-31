@@ -1,49 +1,32 @@
 class Solution {
-
-    int findMax(int[] freq) {
-
-        int max = 0;
-
-        for (int i = 0; i < 256; i++) {
-            max = Math.max(max, freq[i]);
-        }
-
-        return max;
-    }
-
     public int characterReplacement(String s, int k) {
 
-        int n = s.length();
-
-        int[] freq = new int[256];
+        int[] freq = new int[26];
 
         int low = 0;
+        int maxFrequency = 0;
         int maxAnswer = 0;
 
-        for (int high = 0; high < n; high++) {
+        for (int high = 0; high < s.length(); high++) {
 
-            freq[s.charAt(high)]++;
+            freq[s.charAt(high) - 'A']++;
 
-            int maxFrequency = findMax(freq);
+            maxFrequency = Math.max(
+                maxFrequency,
+                freq[s.charAt(high) - 'A']
+            );
 
-            int length = high - low + 1;
+            while ((high - low + 1) - maxFrequency > k) {
 
-            int changes = length - maxFrequency;
-
-            while (changes > k) {
-
-                freq[s.charAt(low)]--;
+                freq[s.charAt(low) - 'A']--;
 
                 low++;
-
-                maxFrequency = findMax(freq);
-
-                length = high - low + 1;
-
-                changes = length - maxFrequency;
             }
 
-            maxAnswer = Math.max(maxAnswer, length);
+            maxAnswer = Math.max(
+                maxAnswer,
+                high - low + 1
+            );
         }
 
         return maxAnswer;
