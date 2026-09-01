@@ -18,7 +18,10 @@ class Solution {
 
     public String minWindow(String s, String t) {
 
-        if (s.length() < t.length()) {
+        int tsize= t.length();
+        int ssize= s.length();
+
+        if (ssize < tsize) {
             return "";
         }
 
@@ -27,7 +30,7 @@ class Solution {
         int tf[] = new int[256];
         int sf[] = new int[256];
 
-        for (int i = 0; i < t.length(); i++) {
+        for (int i = 0; i < tsize; i++) {
             tf[t.charAt(i)]++;
         }
 
@@ -36,7 +39,7 @@ class Solution {
         int min = Integer.MAX_VALUE;
         int res = 0;
 
-        while (high < s.length()) {
+        while (high < ssize) {
 
             sf[s.charAt(high)]++;
 
