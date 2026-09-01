@@ -22,7 +22,7 @@ class Solution {
             return "";
         }
 
-        StringBuilder sb = new StringBuilder("");
+        
 
         int tf[] = new int[256];
         int sf[] = new int[256];
@@ -57,6 +57,8 @@ class Solution {
         if (min == Integer.MAX_VALUE) {
             return "";
         }
+
+        StringBuilder sb = new StringBuilder("");
 
         while (min != 0) {
             sb.append(s.charAt(res));
