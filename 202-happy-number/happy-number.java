@@ -13,18 +13,20 @@ class Solution {
     }
     public boolean isHappy(int n) {
 
-         int slow = n;
-        int fast = n;
-
-        do {
-            slow = srq(slow);
-            fast = srq(srq(fast));
-        } while (slow != fast);
-
-        return slow == 1;
-
+        int slow=n;
+        int fast=n;
         
+        while(fast!=1){
 
-        
+            slow=srq(slow);
+            fast=srq(srq(fast));
+
+            if(slow==fast && fast!=1){
+                return false;
+            }
+
+        }
+
+        return true;
     }
 }
