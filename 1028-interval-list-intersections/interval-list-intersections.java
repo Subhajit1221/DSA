@@ -24,13 +24,19 @@ class Solution {
 
         while(i<m && j<n){
 
-           int start = Math.max(start1, start2);
-            int end = Math.min(end1, end2);
+           if(start1<=start2){
 
-            if (start <= end) {
-                list.add(new int[]{start, end});
+            if(end1>=start2){
+                list.add(new int[]{Math.max(start1,start2),Math.min(end1,end2)});
             }
-            
+           }else{
+
+            if(end2>=start1){
+                list.add(new int[]{Math.max(start1,start2),Math.min(end1,end2)});
+            }
+
+           }
+
             if(end1<=end2){
                 i++;
 
