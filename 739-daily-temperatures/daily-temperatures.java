@@ -12,7 +12,7 @@ class Solution {
             if(s.isEmpty()){
                 s.push(i);
             }
-            if(temperatures[s.peek()]>=temperatures[i]){
+            else if(temperatures[s.peek()]>=temperatures[i]){
                 s.push(i);
             }else{
                 while(!s.isEmpty() && temperatures[s.peek()]<temperatures[i]){
