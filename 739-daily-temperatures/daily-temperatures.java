@@ -9,24 +9,20 @@ class Solution {
 
         while(i<temperatures.length){
 
-            if(s.isEmpty()){
-                s.push(i);
-            }
-            else if(temperatures[s.peek()]>=temperatures[i]){
-                s.push(i);
-            }else{
+            
                 while(!s.isEmpty() && temperatures[s.peek()]<temperatures[i]){
                     warmer[s.peek()]=i-s.pop();
                 }
 
                 s.push(i);
+                i++;
                 
                 
 
             }
 
-            i++;
-        }
+           
+        
         
         return warmer;
     }
