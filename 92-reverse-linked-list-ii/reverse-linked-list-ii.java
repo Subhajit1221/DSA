@@ -1,75 +1,29 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-
-       
-        
-
-        ListNode pre=head;
-
-        ListNode post=head;
-
-        int count=1;
-
-        
-
-        
-        while(right!=count){
-            
-            if(left-1>count){
-                pre=pre.next;
-                
-            }
-            
-            post=post.next;
-
-            count++;
+        if (head == null || left == right) {
+            return head;
         }
 
-        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
 
-
-       
-
-        ListNode prev=post.next;
-
-        post.next=null;
-
-        
-        ListNode curr= pre.next;
-        if(left==1){
-            curr= head; 
+        // 1. Move `prev` to the node immediately before index `left`
+        for (int i = 0; i < left - 1; i++) {
+            prev = prev.next;
         }
 
-        while(curr != null){
-            ListNode next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
+        // 2. Head of the sublist to be reversed
+        ListNode curr = prev.next;
+
+        // 3. Repeatedly move `curr.next` to the front of the sublist
+        for (int i = 0; i < right - left; i++) {
+            ListNode next = curr.next;
+            curr.next = next.next;
+            next.next = prev.next;
+            prev.next = next;
         }
 
-        
-        
-
-        if(left==1){
-           head=prev; 
-        }else{
-            pre.next=prev;
-        }
-
-
-        return head;
-
-
-
+        return dummy.next;
     }
 }
