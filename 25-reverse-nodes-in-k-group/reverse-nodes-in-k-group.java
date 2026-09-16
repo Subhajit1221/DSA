@@ -41,15 +41,15 @@ class Solution {
 
         ListNode prevgrpend=dummy;
         ListNode grpsrt;
-        ListNode kth;
+        ListNode kth=dummy.next;
         ListNode nextgrp=null;
 
         
 
-        while(prevgrpend.next != null){
+        while(kth != null ){
 
             grpsrt = prevgrpend.next;
-            kth= grpsrt;
+            
             int count=0;
             while(kth != null && count<k-1){
                kth=kth.next;
