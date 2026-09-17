@@ -47,7 +47,7 @@ class Solution {
             n++;
         }
 
-        System.out.println(temp.val);
+        
 
 
         tail.next=head;
